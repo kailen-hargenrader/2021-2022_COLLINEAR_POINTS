@@ -10,7 +10,11 @@
 
 import java.util.Comparator;
 import edu.princeton.cs.algs4.StdDraw;
-
+/**
+ * Implements a comparable object for points.
+ * @author monke
+ *
+ */
 public class Point implements Comparable<Point> {
 
     private final int x;     // x-coordinate of this point
@@ -59,8 +63,16 @@ public class Point implements Comparable<Point> {
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
-        /* YOUR CODE HERE */
-      return x;
+    	if(that == null) throw new NullPointerException("Point cannot be null.");
+        if(that.x == this.x) {
+        	if(that.y == this.y) {
+        		return Double.NEGATIVE_INFINITY;
+        	}
+        	else {
+        		return Double.POSITIVE_INFINITY;
+        	}
+        }
+      return (double) (that.y-this.y)/(that.x-this.x);
     }
 
     /**
@@ -76,8 +88,9 @@ public class Point implements Comparable<Point> {
      *         argument point
      */
     public int compareTo(Point that) {
-        /* YOUR CODE HERE */
-      return 0;
+    	if(that == null) throw new NullPointerException("Point cannot be null.");
+        if(that.y==this.y) return this.x-that.x;
+      return this.y-that.y;
     }
 
     /**
@@ -87,8 +100,7 @@ public class Point implements Comparable<Point> {
      * @return the Comparator that defines this ordering on points
      */
     public Comparator<Point> slopeOrder() {
-        /* YOUR CODE HERE */
-      return null;
+      return new PointComparator(this);
     }
 
 
@@ -110,4 +122,33 @@ public class Point implements Comparable<Point> {
     public static void main(String[] args) {
         /* YOUR CODE HERE */
     }
+}
+/**
+ * Implements a comparator for points where points are compared based on the slope they make with a 3rd point
+ * @author monke
+ *
+ */
+class PointComparator implements Comparator<Point>{
+	Point thisPoint;
+	
+	/**
+	 * Initiates PointComparator for a specific point p
+	 * @param p
+	 */
+	public PointComparator(Point p) {
+		thisPoint = p;
+	}
+	
+	@Override
+	public int compare(Point o1, Point o2) {
+		if(o1 == null || o2 == null) throw new NullPointerException("Point cannot be null.");
+		if(thisPoint.slopeTo(o1) > thisPoint.slopeTo(o2)) {
+			return 1;
+		}
+		else if(thisPoint.slopeTo(o1) < thisPoint.slopeTo(o2)) {
+			return -1;
+		}
+		return 0;
+	}
+	
 }

@@ -79,7 +79,25 @@ public class PointTest {
 
   @Test
   public void testSlopeOrder() {
-    fail("Not yet implemented");
+    assertTrue(p1_1.slopeOrder().compare(p10_10, p5_7) < 0);
+    assertTrue(p1_1.slopeOrder().compare(p5_7, p10_10) > 0);
+    assertTrue(p1_1.slopeOrder().compare(p5_7, p5_7) == 0);
+    assertTrue(p1_1.slopeOrder().compare(p1_1, p1_1) == 0);
+  }
+  
+  @Test (expected = NullPointerException.class)
+  public void testNullCompareTo() {
+    p1_1.compareTo(null);
+  }
+  
+  @Test (expected = NullPointerException.class)
+  public void testNullSlopeTo() {
+    p1_1.slopeTo(null);
+  }
+  
+  @Test (expected = NullPointerException.class)
+  public void testNullSlopeOrder() {
+    p1_1.slopeOrder().compare(p5_7, null);
   }
 
 }
