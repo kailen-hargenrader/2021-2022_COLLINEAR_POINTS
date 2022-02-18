@@ -93,17 +93,17 @@ public class PointTest {
     assertTrue(p1_1.slopeOrder().compare(p1_1, p1_1) == 0);
   }
   
-  @Test (expected = IllegalArgumentException.class)
+  @Test (expected = NullPointerException.class)
   public void testNullCompareTo() {
     p1_1.compareTo(null);
   }
   
-  @Test (expected = IllegalArgumentException.class)
+  @Test (expected = NullPointerException.class)
   public void testNullSlopeTo() {
     p1_1.slopeTo(null);
   }
   
-  @Test (expected = IllegalArgumentException.class)
+  @Test (expected = NullPointerException.class)
   public void testNullSlopeOrder() {
     p1_1.slopeOrder().compare(p5_7, null);
   }

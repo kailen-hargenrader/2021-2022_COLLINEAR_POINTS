@@ -31,7 +31,11 @@ public class BruteCollinearPointsTest {
 		} 
 		return new BruteCollinearPoints(points);
 	}
-
+	@Test (expected = IllegalArgumentException.class)
+	public void testNull() {
+		new BruteCollinearPoints(null);
+	}
+	
 	@Test
 	public void testNumberOfSegments() {
 		for(LineSegment line: bcp10_2.segments()) {
