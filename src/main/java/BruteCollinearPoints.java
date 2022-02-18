@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 public class BruteCollinearPoints {
 	private ArrayList<LineSegment> lines; // Container for line segments before conversion to array
-	private Point[] points;
+	private Point[] Points;
 
 	public BruteCollinearPoints(Point[] points) {
 		// finds all line segments containing 4 points
@@ -26,21 +26,21 @@ public class BruteCollinearPoints {
 				if(points[i].slopeTo(points[j]) == Double.NEGATIVE_INFINITY) throw new IllegalArgumentException("Points must be Different.");
 			}
 		}
-		this.points = points;
+		Points = points;
 		lines = new ArrayList<LineSegment>();
 		Generate();
 		
 	}
 	private void Generate() {
-		Arrays.sort(points);
+		Arrays.sort(Points);
 		double slope;
-		for(int i = 0; i<points.length-3; i++) {					//This is really gross
-			for(int j = i+1; j<points.length-2; j++) {
-				slope = points[i].slopeTo(points[j]);
-				for(int k = j+1; k<points.length-1; k++) {
-					if(slope == points[j].slopeTo(points[k])) {
-						for(int m = k+1; m<points.length; m++) {
-							if(slope == points[k].slopeTo(points[m])) lines.add(new LineSegment(points[i],points[m]));
+		for(int i = 0; i<Points.length-3; i++) {					//This is really gross
+			for(int j = i+1; j<Points.length-2; j++) {
+				slope = Points[i].slopeTo(Points[j]);
+				for(int k = j+1; k<Points.length-1; k++) {
+					if(slope == Points[j].slopeTo(Points[k])) {
+						for(int m = k+1; m<Points.length; m++) {
+							if(slope == Points[k].slopeTo(Points[m])) lines.add(new LineSegment(Points[i],Points[m]));
 						} 
 					}
 
