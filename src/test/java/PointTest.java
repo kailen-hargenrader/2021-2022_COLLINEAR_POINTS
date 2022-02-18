@@ -4,17 +4,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PointTest {
-  Point p5_7, p10_10, p1_1;
+  Point p5_7, p10_10, p1_1, p8_10;
   @Before
   public void setUp() throws Exception {
     p5_7 = new Point(5,7);
     p10_10 = new Point(10,10);
+    p8_10 = new Point(8,10);
     p1_1 = new Point(1,1);
   }
 
   @Test
   public void testSlopeToNormal() {
     assertEquals(0.6, p5_7.slopeTo(p10_10), 0.01);
+    System.out.println(p8_10.slopeTo(p10_10));
+  }
+  
+  @Test
+  public void testSlopeToZero() {
+    assertEquals(0.0, p8_10.slopeTo(p10_10), 0.01);
+    assertEquals(0.0, p10_10.slopeTo(p8_10), 0.01);
   }
 
   @Test

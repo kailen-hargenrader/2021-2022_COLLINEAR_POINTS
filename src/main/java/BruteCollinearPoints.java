@@ -28,11 +28,11 @@ public class BruteCollinearPoints {
 		}
 		this.points = points;
 		lines = new ArrayList<LineSegment>();
-		Arrays.sort(this.points);
 		Generate();
 		
 	}
 	private void Generate() {
+		Arrays.sort(points);
 		double slope;
 		for(int i = 0; i<points.length-3; i++) {					//This is really gross
 			for(int j = i+1; j<points.length-2; j++) {
