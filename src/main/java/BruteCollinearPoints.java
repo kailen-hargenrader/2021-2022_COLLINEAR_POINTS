@@ -19,14 +19,14 @@ public class BruteCollinearPoints {
 
 	public BruteCollinearPoints(Point[] points) {
 		// finds all line segments containing 4 points
-		Points = points.clone();
-		if(Points == null || Points[0] == null)throw new IllegalArgumentException("Points cannot be null.");
-		for(int i = 0; i<Points.length; i++) {
-			for(int j = Points.length-1; j>i; j--) {
-				if(Points[j] == null) throw new IllegalArgumentException("Points cannot be null.");
-				if(Points[i].slopeTo(Points[j]) == Double.NEGATIVE_INFINITY) throw new IllegalArgumentException("Points must be Different.");
+		if(points == null || points[0] == null)throw new IllegalArgumentException("Points cannot be null.");
+		for(int i = 0; i<points.length; i++) {
+			for(int j = points.length-1; j>i; j--) {
+				if(points[j] == null) throw new IllegalArgumentException("Points cannot be null.");
+				if(points[i].slopeTo(points[j]) == Double.NEGATIVE_INFINITY) throw new IllegalArgumentException("Points must be Different.");
 			}
 		}
+		Points = points.clone();
 		lines = new ArrayList<LineSegment>();
 		Generate();
 		
