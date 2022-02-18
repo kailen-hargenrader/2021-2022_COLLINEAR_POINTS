@@ -13,10 +13,19 @@
  *************************************************************************/
 import java.util.Arrays;
 import java.util.ArrayList;
+/**
+ * Detects groups of 4 points which make a line.
+ * @author monke
+ *
+ */
 public class BruteCollinearPoints {
 	private ArrayList<LineSegment> lines; // Container for line segments before conversion to array
-	private Point[] Points;
-
+	private Point[] Points; //private variable which expands the scope of constructor variable points
+	
+	/**
+	 * Initiates BCP with an array of points.
+	 * @param points array of points
+	 */
 	public BruteCollinearPoints(Point[] points) {
 		// finds all line segments containing 4 points
 		if(points == null || points[0] == null)throw new IllegalArgumentException("Points cannot be null.");
@@ -48,12 +57,18 @@ public class BruteCollinearPoints {
 			}
 		}
 	}
-
+	/**
+	 * returns number of 4 point line segments found within point array.
+	 * @return number of line segments
+	 */
 	public int numberOfSegments() {
 		// the number of line segments
 		return lines.size();
 	}
-
+	/**
+	 * returns an array of 4 point line segments found within point array.
+	 * @return array of line segments
+	 */
 	public LineSegment[] segments() {
 		// the line segments
 		return lines.toArray(new LineSegment[lines.size()]);

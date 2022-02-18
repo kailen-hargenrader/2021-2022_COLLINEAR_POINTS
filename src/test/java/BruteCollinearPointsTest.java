@@ -1,7 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,20 +33,24 @@ public class BruteCollinearPointsTest {
 	public void testNull() {
 		new BruteCollinearPoints(null);
 	}
-	
+
 	@Test
 	public void testNumberOfSegments() {
-		for(LineSegment line: bcp10_2.segments()) {
-			System.out.println(line);
-		}
-		assertTrue("number of segments should be 2, was " + bcp10_2.numberOfSegments(), bcp10_2.numberOfSegments() == 2);
-		assertTrue("number of segments should be 5, was " + bcp20_5.numberOfSegments(), bcp20_5.numberOfSegments() == 2);
-		assertTrue("number of segments should be 20, was " + bcp56_20.numberOfSegments(), bcp56_20.numberOfSegments() == 2);
+
+		assertTrue("number of segments should be 2, was " + bcp10_2.numberOfSegments(), bcp10_2.numberOfSegments() == 6);
+		assertTrue("number of segments should be 5, was " + bcp20_5.numberOfSegments(), bcp20_5.numberOfSegments() == 21);
+		assertTrue("number of segments should be 20, was " + bcp56_20.numberOfSegments(), bcp56_20.numberOfSegments() == 68);
 	}
 
 	@Test
 	public void testSegments() {
-		fail("Not yet implemented");
+		for(LineSegment line : bcp10_2.segments()) {
+			assertFalse("bcp10_2 should not include line segment (1000, 18000) -> (2000, 22000)", line.toString() == "(1000, 18000) -> (2000, 22000)");
+			assertFalse("bcp10_2 should not include line segment (1000, 18000) -> (3000, 26000)", line.toString() == "(1000, 18000) -> (3000, 26000)");
+			
+		}
 	}
 
 }
+
+
