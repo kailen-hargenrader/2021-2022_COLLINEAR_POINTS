@@ -37,9 +37,9 @@ public class BruteCollinearPointsTest {
 	@Test
 	public void testNumberOfSegments() {
 
-		assertTrue("number of segments should be 2, was " + bcp10_2.numberOfSegments(), bcp10_2.numberOfSegments() == 6);
-		assertTrue("number of segments should be 5, was " + bcp20_5.numberOfSegments(), bcp20_5.numberOfSegments() == 21);
-		assertTrue("number of segments should be 20, was " + bcp56_20.numberOfSegments(), bcp56_20.numberOfSegments() == 68);
+		assertTrue("number of segments should be 6, was " + bcp10_2.numberOfSegments(), bcp10_2.numberOfSegments() == 6);
+		assertTrue("number of segments should be 21, was " + bcp20_5.numberOfSegments(), bcp20_5.numberOfSegments() == 21);
+		assertTrue("number of segments should be 68, was " + bcp56_20.numberOfSegments(), bcp56_20.numberOfSegments() == 68);
 	}
 
 	@Test

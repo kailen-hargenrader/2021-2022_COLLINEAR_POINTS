@@ -40,6 +40,10 @@ public class BruteCollinearPoints {
 		Generate();
 		
 	}
+	
+	/**
+	 * Generates 4 point line segments and adds them to list of lines
+	 */
 	private void Generate() {
 		Arrays.sort(Points);
 		double slope;
