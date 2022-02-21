@@ -14,9 +14,9 @@ public class FastCollinearPointsTest {
 	FastCollinearPoints bcp40_4;
 	@Before
 	public void setUp() throws Exception {
-		//bcp10_2 = generateBCP("input10.txt");
-		//bcp20_5 = generateBCP("input20.txt");
-		//bcp56_20 = generateBCP("input56.txt");
+		bcp10_2 = generateBCP("input10.txt");
+		bcp20_5 = generateBCP("input20.txt");
+		bcp56_20 = generateBCP("input56.txt");
 		bcp40_4 = generateBCP("input40.txt");
 	}
 
@@ -38,13 +38,13 @@ public class FastCollinearPointsTest {
 
 	@Test
 	public void testNumberOfSegments() {
-		for(LineSegment line : bcp40_4.segments()) {
-			System.out.println(line);
-		}
-		//assertTrue("number of segments should be 2, was " + bcp10_2.numberOfSegments(), bcp10_2.numberOfSegments() == 2);
-		//assertTrue("number of segments should be 5, was " + bcp20_5.numberOfSegments(), bcp20_5.numberOfSegments() == 5);
+		//for(LineSegment line : bcp40_4.segments()) {
+			//System.out.println(line);
+		//}
+		assertTrue("number of segments should be 2, was " + bcp10_2.numberOfSegments(), bcp10_2.numberOfSegments() == 2);
+		assertTrue("number of segments should be 5, was " + bcp20_5.numberOfSegments(), bcp20_5.numberOfSegments() == 5);
 		assertTrue("number of segments should be 4, was " + bcp40_4.numberOfSegments(), bcp40_4.numberOfSegments() == 4);
-		//assertTrue("number of segments should be 20, was " + bcp56_20.numberOfSegments(), bcp56_20.numberOfSegments() == 20);
+		assertTrue("number of segments should be 20, was " + bcp56_20.numberOfSegments(), bcp56_20.numberOfSegments() == 20);
 		
 	}
 

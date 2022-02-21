@@ -39,15 +39,15 @@ public class FastCollinearPoints {
 	
 	private void Generate() {
 		ArrayList<DoubleWithIndex> slopes = new ArrayList<DoubleWithIndex>();
+		DoubleWithIndex start;
 		for(int i = 0; i<Points.size()-3;i++) {
 			for(int j = i+1; j < Points.size(); j++) {
 				slopes.add(new DoubleWithIndex(Points.get(i).slopeTo(Points.get(j)),j));
 			}
 			Collections.sort(slopes);
-			
-			DoubleWithIndex start = slopes.get(0);
-			int count = 1;
-			for(int k = 1; k < slopes.size(); k++) {
+			start = slopes.get(0);
+			int count = 0;
+			for(int k = 0; k < slopes.size(); k++) {
 				if(slopes.get(k).getValue() == start.getValue()) count++;
 				else {
 					if(count >= 3) {
@@ -57,11 +57,10 @@ public class FastCollinearPoints {
 					start = slopes.get(k);
 				}
 			}
-			if(count >=3) lines.add(new CoolerLineSegment(Points.get(start.getIndex()), Points.get(slopes.get(slopes.size()-1).getIndex())));
+			if(count >=3 ) lines.add(new CoolerLineSegment(Points.get(i), Points.get(slopes.get(slopes.size()-1).getIndex())));
 			slopes.clear();
 		}
 		Collections.sort(lines);
-		System.out.println(lines);
 		CoolerLineSegment compare = lines.get(0);
 		for(int m = 1; m < lines.size(); m++) {
 			if(lines.get(m).compareTo(compare) == 0 && lines.get(m).getPoint2() == compare.getPoint2()) {
