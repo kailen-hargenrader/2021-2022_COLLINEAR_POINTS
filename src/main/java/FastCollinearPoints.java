@@ -34,7 +34,7 @@ public class FastCollinearPoints {
 		Collections.addAll(Points, points);
 		Collections.sort(Points);
 		lines = new ArrayList<CoolerLineSegment>();
-		Generate();
+		if(Points.size() > 3) Generate();
 	}
 	
 	private void Generate() {
@@ -61,16 +61,19 @@ public class FastCollinearPoints {
 			slopes.clear();
 		}
 		Collections.sort(lines);
-		CoolerLineSegment compare = lines.get(0);
-		for(int m = 1; m < lines.size(); m++) {
-			if(lines.get(m).compareTo(compare) == 0 && lines.get(m).getPoint2() == compare.getPoint2()) {
-				lines.remove(m);
-				m--;
-			}
-			else {
-				compare = lines.get(m);
+		if(lines.size() > 1) {
+			CoolerLineSegment compare = lines.get(0);
+			for(int m = 1; m < lines.size(); m++) {
+				if(lines.get(m).compareTo(compare) == 0) {
+					lines.remove(m);
+					m--;
+				}
+				else {
+					compare = lines.get(m);
+				}
 			}
 		}
+		
 	}
 
 	public int numberOfSegments() {
@@ -140,6 +143,10 @@ class CoolerLineSegment extends LineSegment implements Comparable<CoolerLineSegm
 	public int compareTo(CoolerLineSegment that) {
 		if(this.getSlope() > that.getSlope()) return 1;
 		else if(this.getSlope() < that.getSlope()) return -1;
-		else return 0;
+		else {
+			if(this.getPoint2().compareTo(that.getPoint2()) > 0) return 1;
+			else if(this.getPoint2().compareTo(that.getPoint2()) < 0) return -1;
+			else return 0;
+		}
 	}
 }
