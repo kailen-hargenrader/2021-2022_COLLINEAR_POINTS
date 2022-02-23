@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /*************************************************************************
@@ -17,11 +16,21 @@ import java.util.Collections;
  *      If so, these points, together with p, are collinear.
  *
  *************************************************************************/
+
+/**
+ * Finds lines of 4 or more collinear points.
+ * @author monke
+ *
+ */
 public class FastCollinearPoints {
 	
-	private ArrayList<CoolerLineSegment> lines;
-	private ArrayList<Point> Points;
+	private ArrayList<CoolerLineSegment> lines; // List of line segments
+	private ArrayList<Point> Points; //Expand the scope of points input array
 	
+	/**
+	 * Initiate FastCollinearPoints
+	 * @param points an array of points 
+	 */
 	public FastCollinearPoints(Point[] points) {
 		if(points == null || points[0] == null)throw new IllegalArgumentException("Points cannot be null.");
 		for(int i = 0; i<points.length; i++) {
@@ -37,6 +46,9 @@ public class FastCollinearPoints {
 		if(Points.size() > 3) Generate();
 	}
 	
+	/**
+	 * Adds line segments to lines
+	 */
 	private void Generate() {
 		ArrayList<DoubleWithIndex> slopes = new ArrayList<DoubleWithIndex>();
 		DoubleWithIndex start;
@@ -75,28 +87,56 @@ public class FastCollinearPoints {
 		}
 		
 	}
-
+	
+	/**
+	 * returns the number of line segments
+	 * @return number of line segments
+	 */
 	public int numberOfSegments() {
 		// the number of line segments
 		return lines.size();
 	}
-
+	
+	/**
+	 * returns full array of line segments with 4 or more of the collinear points in the points array.
+	 * @return array of line segments
+	 */
 	public LineSegment[] segments() {
 		// the line segments
 		return lines.toArray(new LineSegment[lines.size()]);
 	}
 }
 
+/**
+ * Implements a double value with an index
+ * @author monke
+ *
+ */
 class DoubleWithIndex implements Comparable<DoubleWithIndex>{
 	private Double value;
 	private int index;
+	
+	/**
+	 * Initiate DoubleWithIndex
+	 * @param d the value of the double
+	 * @param i the index of the double
+	 */
 	public DoubleWithIndex(Double d, int i) {
 		value = d;
 		index = i;
 	}
+	/**
+	 * return the value
+	 * @return value
+	 */
 	public double getValue() {
 		return value;
 	}
+	
+	/**
+	 * return the index
+	 * @return index
+	 */
 	public int getIndex() {
 		return index;
 	}
@@ -111,15 +151,27 @@ class DoubleWithIndex implements Comparable<DoubleWithIndex>{
 		else return 0;
 	}
 	
+	@Override
 	public String toString() {
 		return value.toString();
 	}
 }
+
+/**
+ * extends the lineSegment class to make the points of the line accessible and store the slope of the line
+ * @author monke
+ *
+ */
 class CoolerLineSegment extends LineSegment implements Comparable<CoolerLineSegment>{
 	private Point x;
 	private Point y;
 	private double slope;
 	
+	/**
+	 * Initiates CoolerLineSegment
+	 * @param X starting point
+	 * @param Y ending point
+	 */
 	public CoolerLineSegment(Point X, Point Y) {
 		super(X, Y);
 		x = X;
@@ -127,14 +179,26 @@ class CoolerLineSegment extends LineSegment implements Comparable<CoolerLineSegm
 		slope = x.slopeTo(y);
 	}
 	
+	/**
+	 * return starting point
+	 * @return start
+	 */
 	public Point getPoint1() {
 		return x;
 	}
 	
+	/**
+	 * return ending point
+	 * @return end
+	 */
 	public Point getPoint2() {
 		return y;
 	}
 	
+	/**
+	 * return slope
+	 * @return slope
+	 */
 	public double getSlope() {
 		return slope;
 	}
