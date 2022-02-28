@@ -115,7 +115,6 @@ public class FastCollinearPoints {
 class DoubleWithIndex implements Comparable<DoubleWithIndex>{
 	private Double value;
 	private int index;
-	
 	/**
 	 * Initiate DoubleWithIndex
 	 * @param d the value of the double
